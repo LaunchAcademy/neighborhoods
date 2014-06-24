@@ -1,18 +1,17 @@
 require 'rails_helper'
 
-  feature 'user signs up or registers', %Q{
+  feature 'user signs up or registers', %Q(
     As a user
     I want to sign up
     So that I can review some neighborhoods
 
-  } do
+  ) do
 
     # Acceptance Criteria
 
     # I must provide my username/email and password
     # I can optionally provide my first name, last name, city, and state
     # I am presented with a success message if I sign up successfully
-
 
     scenario 'user signs up successfully' do
       attrs = {
@@ -36,7 +35,6 @@ require 'rails_helper'
     scenario 'user gets error message if email missing' do
 
       attrs = {
-        email: "",
         password: "Secret12345",
         password_confirmation: "Secret12345"
       }
@@ -49,15 +47,15 @@ require 'rails_helper'
       fill_in 'Password confirmation', with: user.password_confirmation
       click_on 'Sign up'
 
-      expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+      expect(page).not_to have_content(
+        'Welcome! You have signed up successfully.')
       expect(page).to have_content 'Email can\'t be blank'
     end
 
     scenario 'user gets error message if password missing' do
       attrs = {
         email: "Dogface@gmail.com",
-        password: "",
-        password_confirmation: ""
+
       }
 
       user = User.new(attrs)
@@ -68,11 +66,8 @@ require 'rails_helper'
       fill_in 'Password confirmation', with: user.password_confirmation
       click_on 'Sign up'
 
-      expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+      expect(page).not_to have_content (
+        'Welcome! You have signed up successfully.')
       expect(page).to have_content 'Password can\'t be blank'
     end
-
-
   end
-
-

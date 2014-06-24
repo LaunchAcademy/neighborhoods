@@ -7,9 +7,7 @@ require 'rails_helper'
 
   } do
 
-
     # Acceptance Criteria
-
     # User provides email / password
     # User sees a success message
 
