@@ -9,6 +9,7 @@
 <body>
 <% if flash.any? %>
   <%= flash[:notice] %>
+  <%= flash[:alert] %>
 <% end %>
 <%= yield %>
 
