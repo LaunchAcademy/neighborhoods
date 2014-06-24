@@ -7,6 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id='user_nav'>
+    <% if user_signed_in? %>
+      <li>
+      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+      </li>
+    <% else %>
+      <li>
+      <%= link_to('Sign in', new_user_session_path)  %>
+      </li>
+    <% end %>
+  </div>
+  <div>
+    <% if flash.any? %>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    <% end %>
+  </div>
 
 <%= yield %>
 
