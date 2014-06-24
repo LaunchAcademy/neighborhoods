@@ -33,12 +33,44 @@ feature 'user signs up or registers', %Q{
 
   end
 
-  # scenario 'user gets error message if username missing' do
+  scenario 'user gets error message if email missing' do
 
-  # end
+    attrs = {
+      email: "",
+      password: "Secret12345",
+      password_confirmation: "Secret12345"
+    }
 
-  # scenario 'user gets error message if password missing'
+    user = User.new(attrs)
 
+    visit new_user_registration_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    fill_in 'Password confirmation', with: user.password_confirmation
+    click_on 'Sign up'
+
+    expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+    expect(page).to have_content 'Email can\'t be blank'
+  end
+
+  scenario 'user gets error message if password missing' do
+        attrs = {
+        email: "Dogface@gmail.com",
+        password: "",
+        password_confirmation: ""
+    }
+
+    user = User.new(attrs)
+
+    visit new_user_registration_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    fill_in 'Password confirmation', with: user.password_confirmation
+    click_on 'Sign up'
+
+    expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+    expect(page).to have_content 'Password can\'t be blank'
+  end
   # scenario 'user gets error message if invalid credentials'
 
   end
