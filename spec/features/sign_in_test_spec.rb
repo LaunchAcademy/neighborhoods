@@ -1,76 +1,78 @@
 require 'rails_helper'
 
-feature 'user signs up or registers', %Q{
-  As a user
-  I want to sign up
-  So that I can review some neighborhoods
+  feature 'user signs up or registers', %Q{
+    As a user
+    I want to sign up
+    So that I can review some neighborhoods
 
-} do
+  } do
 
-# Acceptance Criteria
+    # Acceptance Criteria
 
-# I must provide my username/email and password
-# I can optionally provide my first name, last name, city, and state
-# I am presented with a success message if I sign up successfully
-# I'm presented with errors if I provide invalid credentials
+    # I must provide my username/email and password
+    # I can optionally provide my first name, last name, city, and state
+    # I am presented with a success message if I sign up successfully
 
-  scenario 'user signs up successfully' do
-    attrs = {
-      email: "dog@face.com",
-      password: "Secret12345",
-      password_confirmation: "Secret12345"
-    }
 
-    user = User.new(attrs)
+    scenario 'user signs up successfully' do
+      attrs = {
+        email: "dog@face.com",
+        password: "Secret12345",
+        password_confirmation: "Secret12345"
+      }
 
-    visit new_user_registration_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
+      user = User.new(attrs)
 
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+      visit new_user_registration_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_on 'Sign up'
 
-  end
+      expect(page).to have_content 'Welcome! You have signed up successfully.'
 
-  scenario 'user gets error message if email missing' do
+    end
 
-    attrs = {
-      email: "",
-      password: "Secret12345",
-      password_confirmation: "Secret12345"
-    }
+    scenario 'user gets error message if email missing' do
 
-    user = User.new(attrs)
+      attrs = {
+        email: "",
+        password: "Secret12345",
+        password_confirmation: "Secret12345"
+      }
 
-    visit new_user_registration_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
+      user = User.new(attrs)
 
-    expect(page).not_to have_content 'Welcome! You have signed up successfully.'
-    expect(page).to have_content 'Email can\'t be blank'
-  end
+      visit new_user_registration_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_on 'Sign up'
 
-  scenario 'user gets error message if password missing' do
-        attrs = {
+      expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+      expect(page).to have_content 'Email can\'t be blank'
+    end
+
+    scenario 'user gets error message if password missing' do
+      attrs = {
         email: "Dogface@gmail.com",
         password: "",
         password_confirmation: ""
-    }
+      }
 
-    user = User.new(attrs)
+      user = User.new(attrs)
 
-    visit new_user_registration_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
+      visit new_user_registration_path
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_on 'Sign up'
 
-    expect(page).not_to have_content 'Welcome! You have signed up successfully.'
-    expect(page).to have_content 'Password can\'t be blank'
+      expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+      expect(page).to have_content 'Password can\'t be blank'
+    end
+
+
   end
-  # scenario 'user gets error message if invalid credentials'
 
-  end
+
