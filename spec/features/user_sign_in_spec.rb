@@ -28,7 +28,6 @@ require 'rails_helper'
     end
 
     scenario 'user tries to sign in without an account' do
-
       visit new_user_session_path
       fill_in 'Email', with: 'dog@face.com'
       fill_in 'Password', with: 'Secret12345'
