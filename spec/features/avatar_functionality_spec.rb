@@ -27,9 +27,12 @@ feature 'users can add an avatar', %Q(
 
     expect(page).to have_content 'Add an avatar'
     attach_file('user_avatar','spec/fixtures/avatar.jpg')
+    fill_in 'Current password', with: user.password
     click_button 'Update'
-
+    expect(page).to have_content 'You updated your account successfully.'
+    expect(page).to have_css('img', text: user.avatar.url)
   end
+
 
 
 end
