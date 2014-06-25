@@ -22,10 +22,12 @@ feature 'users can add an avatar', %Q(
     user = User.create(attrs)
 
     sign_in_as(user)
-    save_and_open_page
 
     click_on 'Edit Profile'
+
     expect(page).to have_content 'Add an avatar'
+    attach_file('user_avatar','spec/fixtures/avatar.jpg')
+    click_button 'Update'
 
   end
 
