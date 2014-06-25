@@ -31,9 +31,5 @@ feature 'users can add an avatar', %Q(
     click_button 'Update'
     expect(page).to have_content 'You updated your account successfully.'
     expect(page).to have_css('img', text: user.avatar.url)
-
   end
-
-
-
 end
