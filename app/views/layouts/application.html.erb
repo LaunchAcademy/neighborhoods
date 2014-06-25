@@ -10,7 +10,7 @@
   <div id='user_nav'>
     <% if user_signed_in? %>
       <li>
-        <img src="<%= current_user.avatar.url %>">
+        <%= image_tag current_user.avatar.url %>
       </li>
       <li>
       <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
