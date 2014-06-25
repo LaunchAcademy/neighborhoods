@@ -7,31 +7,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id='user_nav'>
-    <% if user_signed_in? %>
-      <li>
-        <img src="<%= current_user.avatar.url %>">
-      </li>
-      <li>
-      <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
-      </li>
-      <li>
-        <%= link_to('Edit Profile', edit_user_registration_path) %>
-      </li>
-    <% else %>
-      <li>
-      <%= link_to('Sign in', new_user_session_path)  %>
-      </li>
-    <% end %>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Neighbor HOODS</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to('Sign in', new_user_session_path)  %>
+            </li>
+          <% end %>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search for hoods">
+        </form>
+      </div>
+    </div>
   </div>
-  <div>
-    <% if flash.any? %>
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
-    <% end %>
+  <!-- end of nav bar -->
+  <% flash.each do |key, value| %>
+    <div class="<%= flash_class %>">
+      <%= value %>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <%= yield %>
   </div>
-
-<%= yield %>
-
 </body>
 </html>
