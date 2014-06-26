@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :neighborhood do
-    sequence(:name) { |n| "Neighborhood #{n} of Boston" }
+    sequence(:name) { |n| "Boston #{n} Neighborhood" }
     description 'The best neighborhood in Boston'
 
     user
