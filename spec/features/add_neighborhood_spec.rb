@@ -26,7 +26,6 @@ feature 'users can add a neighborhood', %Q(
     fill_in 'Description', with: hood.description
     click_button 'Create Neighborhood'
 
-
     expect(page).to have_content 'Success! Your neighborhood is pending approval.'
 
   end
