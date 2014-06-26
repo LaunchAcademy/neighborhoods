@@ -33,6 +33,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'pry-rails'
   gem 'launchy'
+  gem 'factory_girl_rails'
 end
 
 gem 'devise'
