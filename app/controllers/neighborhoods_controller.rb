@@ -8,6 +8,7 @@ class NeighborhoodsController < ApplicationController
 
   def create
     @neighborhood = current_user.neighborhoods.build(neighborhood_params)
+
     if @neighborhood.save
       flash[:notice] = "Success! Your neighborhood is pending approval."
       redirect_to neighborhood_path(@neighborhood)
