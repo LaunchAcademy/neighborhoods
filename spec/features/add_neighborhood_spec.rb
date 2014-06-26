@@ -24,11 +24,10 @@ feature 'users can add a neighborhood', %Q(
     visit new_neighborhood_path
     fill_in 'Name', with: hood.name
     fill_in 'Description', with: hood.description
-    click_button 'Submit'
+    click_button 'Create Neighborhood'
 
 
-    expect(page).to have_content 'Successfully added.'
-    expect(page).to have_content 'Pending admin approval.'
+    expect(page).to have_content 'Success! Your neighborhood is pending approval.'
 
   end
 end
