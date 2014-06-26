@@ -69,12 +69,57 @@ feature 'Admin logs in', %Q(
     # admin_user.reload
     # member_user.reload
     expect(page).to have_content 'Edit Users - Admin Page'
-    save_and_open_page
     expect(page).to have_content member_user.email
     expect(page).to have_content admin_user.email
   end
-  #scenario to go to delete link - takes visitor to edit registration page (already exists)
+
+  # scenario to go to delete link
+  scenario 'admin can delete user' do
+    attrs = {
+      email: "dog1111@face.com",
+      password: "Secret12345",
+      role: "admin"
+    }
+
+    admin_user = User.create!(attrs)
+
+    attrs = {
+      email: "cat1111@face.com",
+      password: "Secret12345",
+    }
+
+    member_user = User.create!(attrs)
+
+    sign_in_as(admin_user)
+
+    visit admin_users_path
+    click_on 'Delete'
+    expect(page).to have_content 'User has been deleted'
+
+  end
   #scenario to go to change role link - takes visitor to edit registration page (already exists)
+  scenario 'admin can promote user to admin' do
+    attrs = {
+      email: "dog1111@face.com",
+      password: "Secret12345",
+      role: "admin"
+    }
+
+    admin_user = User.create!(attrs)
+
+    attrs = {
+      email: "cat1111@face.com",
+      password: "Secret12345",
+    }
+
+    member_user = User.create!(attrs)
+
+    sign_in_as(admin_user)
+
+    visit admin_users_path
+    click_on 'Promote'
+    expect(page).to have_content 'User has been promoted'
+  end
 end
 
 # create a user
