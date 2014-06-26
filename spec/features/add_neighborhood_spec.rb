@@ -14,19 +14,26 @@ feature 'users can add a neighborhood', %Q(
 # I can provide details about the neighborhood
 
   scenario 'user successfully adds neighborhood' do
-
     user = FactoryGirl.create(:user)
-
-    sign_in_as(user)
-
     hood = FactoryGirl.build(:neighborhood)
 
+    sign_in_as(user)
     visit new_neighborhood_path
     fill_in 'Name', with: hood.name
     fill_in 'Description', with: hood.description
     click_button 'Create Neighborhood'
 
     expect(page).to have_content 'Success! Your neighborhood is pending approval.'
+  end
 
+  scenario 'user unsuccessfully adds neighborhood' do
+    user = FactoryGirl.create(:user)
+    hood = FactoryGirl.build(:neighborhood)
+
+    sign_in_as(user)
+    visit new_neighborhood_path
+    click_button 'Create Neighborhood'
+
+    expect(page).to have_content 'Could not save'
   end
 end
