@@ -26,5 +26,4 @@ class NeighborhoodsController < ApplicationController
   def neighborhood_params
     params.require(:neighborhood).permit(:name, :description)
   end
-
 end
