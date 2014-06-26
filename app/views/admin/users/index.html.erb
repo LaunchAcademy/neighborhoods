@@ -1,0 +1,12 @@
+Edit Users - Admin Page
+
+
+<table>
+  <% @members.each do |member| %>
+  <tr>
+    <td>
+      <%= member.email %>
+    </td>
+  </tr>
+  <% end %>
+</table>

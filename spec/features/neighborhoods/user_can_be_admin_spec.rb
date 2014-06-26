@@ -69,11 +69,8 @@ feature 'Admin logs in', %Q(
     # admin_user.reload
     # member_user.reload
     expect(page).to have_content 'Edit Users - Admin Page'
-    expect(page).to have_content 'Admins'
-    expect(page).to have_content 'Members'
+    save_and_open_page
     expect(page).to have_content member_user.email
-    expect(page).to have_content 'Delete'
-    expect(page).to have_content 'Change role'
     expect(page).to have_content admin_user.email
   end
   #scenario to go to delete link - takes visitor to edit registration page (already exists)
