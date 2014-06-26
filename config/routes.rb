@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :installs
 
+  resources :neighborhoods, only: [:index, :new, :create, :show]
 end

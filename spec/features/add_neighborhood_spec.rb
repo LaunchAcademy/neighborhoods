@@ -15,20 +15,20 @@ feature 'users can add a neighborhood', %Q(
 
   scenario 'user successfully adds neighborhood' do
 
-    user = FactoryGirl.create!(:user)
+    user = FactoryGirl.create(:user)
 
     sign_in_as(user)
 
-    click_on 'Edit Profile'
+    hood = FactoryGirl.build(:neighborhood)
 
-    expect(page).to have_content 'Add an avatar'
-    attach_file('user_avatar', 'spec/fixtures/avatar.jpg')
-    fill_in 'Current password', with: user.password
-    click_button 'Update'
+    visit new_neighborhood_path
+    fill_in 'Name', with: hood.name
+    fill_in 'Description', with: hood.description
+    click_button 'Submit'
 
-    user.reload
 
-    expect(page).to have_content 'You updated your account successfully.'
-    expect(page).to have_image user.avatar.url
+    expect(page).to have_content 'Successfully added.'
+    expect(page).to have_content 'Pending admin approval.'
+
   end
 end
