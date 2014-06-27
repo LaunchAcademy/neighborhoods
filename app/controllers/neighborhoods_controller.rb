@@ -21,11 +21,33 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
+    @upvoted = upvoted(current_user, @neighborhood.reviews)
+    @downvoted = downvoted(current_user, @neighborhood.reviews)
   end
 
   private
 
   def neighborhood_params
     params.require(:neighborhood).permit(:name, :description)
+  end
+
+  def upvoted(user, reviews)
+    upvoted_reviews = []
+    user.votes.each do |vote|
+      if vote.weight == 1
+        upvoted_reviews << vote.review
+      end
+    end
+    upvoted_reviews
+  end
+
+  def downvoted(user, reviews)
+    downvoted_reviews = []
+    user.votes.each do |vote|
+      if vote.weight == -1
+        downvoted_reviews << vote.review
+      end
+    end
+    downvoted_reviews
   end
 end

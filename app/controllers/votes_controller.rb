@@ -9,5 +9,4 @@ class VotesController < ApplicationController
     end
     redirect_to neighborhood_path(vote.review.neighborhood)
   end
-
 end

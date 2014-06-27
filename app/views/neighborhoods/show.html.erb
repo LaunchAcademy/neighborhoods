@@ -6,6 +6,13 @@
 <% @neighborhood.reviews.each do |review| %>
   <li>
     <strong>Rating: <%= review.rating %></strong><br>
-    <%= review.description %> <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
+    <%= review.description %>
+    <% if !@upvoted.include?(review) %>
+      <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
+    <% end %>
+    <% if !@downvoted.include?(review) %>
+    <%= button_to 'Downvote', review_votes_path(review, weight: -1)%>
+    <% end %>
+  </li>
 <% end %>
 </ul>
