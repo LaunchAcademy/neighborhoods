@@ -26,6 +26,10 @@ feature 'functionality related to users viewing restricted areas' do
 
     user = User.create!(attrs)
 
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
     visit admin_users_path
     expect(page).to have_content 'not authorized'
     expect(page).not_to have_content 'Edit Users'
