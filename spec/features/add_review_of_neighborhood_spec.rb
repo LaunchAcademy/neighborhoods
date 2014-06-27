@@ -26,7 +26,7 @@ feature 'users can review a neighborhood', %Q(
     expect(page).to have_content 'Successfully added.'
   end
 
-  scenario 'user unsuccessfully adds neighborhood' do
+  scenario 'user unsuccessfully adds review' do
     user = FactoryGirl.create(:user)
     hood = FactoryGirl.create(:neighborhood)
 
@@ -35,5 +35,13 @@ feature 'users can review a neighborhood', %Q(
     click_button 'Create Review'
 
     expect(page).to have_content 'Could not save.'
+  end
+
+  scenario 'visitor attempts to add review' do
+    hood = FactoryGirl.create(:neighborhood)
+
+    visit new_neighborhood_review_path(hood.id)
+
+    expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 end
