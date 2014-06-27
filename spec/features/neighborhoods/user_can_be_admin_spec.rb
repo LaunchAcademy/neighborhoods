@@ -7,9 +7,9 @@ feature 'Admin logs in', %Q(
 
   scenario 'admin logs in successfully' do
     attrs = {
-      email: "dog1111@face.com",
-      password: "Secret12345",
-      role: "admin"
+      email: 'dog1111@face.com',
+      password: 'Secret12345',
+      role: 'admin'
     }
 
     user = User.create!(attrs)
@@ -25,35 +25,35 @@ feature 'Admin logs in', %Q(
   end
 
   scenario 'member logs in but does not see admin links' do
-  attrs = {
-    email: "dog1111@face.com",
-    password: "Secret12345",
-  }
+    attrs = {
+      email: 'dog1111@face.com',
+      password: 'Secret12345',
+    }
 
-  user = User.create!(attrs)
+    user = User.create!(attrs)
 
-  visit new_user_session_path
-  fill_in 'Email', with: user.email
-  fill_in 'Password', with: user.password
-  click_button 'Sign in'
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
 
-  expect(page).to have_content 'Signed in successfully.'
-  expect(page).not_to have_content 'Edit Users'
-  expect(page).not_to have_content 'Pending Neighborhoods'
+    expect(page).to have_content 'Signed in successfully.'
+    expect(page).not_to have_content 'Edit Users'
+    expect(page).not_to have_content 'Pending Neighborhoods'
   end
 
   scenario 'admin follows edit users link and sees the right content' do
     attrs = {
-      email: "dog1111@face.com",
-      password: "Secret12345",
-      role: "admin"
+      email: 'dog1111@face.com',
+      password: 'Secret12345',
+      role: 'admin'
     }
 
     admin_user = User.create!(attrs)
 
     attrs = {
-      email: "cat1111@face.com",
-      password: "Secret12345",
+      email: 'cat2@face.com',
+      password: 'Secret12345',
     }
 
     member_user = User.create!(attrs)
@@ -71,11 +71,12 @@ feature 'Admin logs in', %Q(
     expect(page).to have_content admin_user.email
   end
 
-  scenario 'admin follows edit users link when there are no non-admin members' do
+  scenario 'admin follows edit users link when there
+            are no non-admin members' do
     attrs = {
-      email: "dog1111@face.com",
-      password: "Secret12345",
-      role: "admin"
+      email: 'dog1111@face.com',
+      password: 'Secret12345',
+      role: 'admin'
     }
 
     admin_user = User.create!(attrs)
@@ -94,16 +95,16 @@ feature 'Admin logs in', %Q(
 
   scenario 'admin can delete user' do
     attrs = {
-      email: "dog1111@face.com",
-      password: "Secret12345",
-      role: "admin"
+      email: 'dog1111@face.com',
+      password: 'Secret12345',
+      role: 'admin'
     }
 
     admin_user = User.create!(attrs)
 
     attrs = {
-      email: "cat1111@face.com",
-      password: "Secret12345",
+      email: 'cat1111@face.com',
+      password: 'Secret12345',
     }
 
     member_user = User.create!(attrs)
@@ -118,16 +119,16 @@ feature 'Admin logs in', %Q(
 
   scenario 'admin can promote user to admin' do
     attrs = {
-      email: "dog1111@face.com",
-      password: "Secret12345",
-      role: "admin"
+      email: 'dog1111@face.com',
+      password: 'Secret12345',
+      role: 'admin'
     }
 
     admin_user = User.create!(attrs)
 
     attrs = {
-      email: "cat1111@face.com",
-      password: "Secret12345",
+      email: 'cat1111@face.com',
+      password: 'Secret12345',
     }
 
     member_user = User.create!(attrs)
@@ -148,15 +149,13 @@ end
     # admin sees submit button
     # success or failure message
     # if successful, redirect to new neighborhood page
-  #neighborhoods inline link for admin
+  # neighborhoods inline link for admin
     # page presents neighborhood details/show page in editable fields
     # delete neighborhood button
     # submit button
     # success/failure
-  #reviews inline link for admin
+  # reviews inline link for admin
     # page presents neighborhood details/show page in editable fields
     # delete neighborhood button
     # submit button
     # success/failure
-
-

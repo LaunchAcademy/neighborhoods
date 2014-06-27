@@ -1,5 +1,4 @@
 class Admin::UsersController < ApplicationController
-
   def index
     @members = User.where(role: :member)
     @admins = User.where(role: :admin)
@@ -10,25 +9,23 @@ class Admin::UsersController < ApplicationController
     @member.role = 'admin'
     @member.save
     if @member.role == 'admin'
-      flash[:notice] = "User has been promoted"
+      flash[:notice] = 'User has been promoted'
       redirect_to admin_users_path
     else
-      flash.now[:notice] = "Something went wrong."
-      render "admin/users"
+      flash.now[:notice] = 'Something went wrong.'
+      render 'admin/users'
     end
-
   end
 
   def destroy
     @member = User.find(params[:id])
-    if @member != nil
+    if @member
       @member.destroy
-      flash[:notice] = "User has been deleted"
+      flash[:notice] = 'User has been deleted'
       redirect_to admin_users_path
     else
-      flash.now[:notice] = "Something went wrong."
-      render "admin/users"
+      flash.now[:notice] = 'Something went wrong.'
+      render 'admin/users'
     end
   end
-
 end
