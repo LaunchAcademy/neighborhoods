@@ -18,22 +18,22 @@ feature 'users can review a neighborhood', %Q(
     review = FactoryGirl.build(:review)
 
     sign_in_as(user)
-    visit new_neighborhood_reviews_path(hood)
+    visit new_neighborhood_review_path(hood.id)
     fill_in 'Description', with: review.description
-    fill_in 'Rating', with: review.rating
-    click_button 'Create Rating'
+    select(review.rating, :from => 'Rating')
+    click_button 'Create Review'
 
-    expect(page).to have_content 'Success!'
+    expect(page).to have_content 'Successfully added.'
   end
 
   scenario 'user unsuccessfully adds neighborhood' do
-    # user = FactoryGirl.create(:user)
-    # hood = FactoryGirl.build(:neighborhood)
+    user = FactoryGirl.create(:user)
+    hood = FactoryGirl.create(:neighborhood)
 
-    # sign_in_as(user)
-    # visit new_neighborhood_path
-    # click_button 'Create Neighborhood'
+    sign_in_as(user)
+    visit new_neighborhood_review_path(hood.id)
+    click_button 'Create Review'
 
-    # expect(page).to have_content 'Could not save'
+    expect(page).to have_content 'Could not save.'
   end
 end

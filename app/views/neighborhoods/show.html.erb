@@ -1,2 +1,12 @@
 <h1><%= @neighborhood.name %></h1>
 <p><%= @neighborhood.description %></p>
+
+<h3>Reviews</h3>
+<ul>
+<% @neighborhood.reviews.each do |review| %>
+  <li>
+    <strong>Rating: <%= review.rating %></strong><br>
+    <%= review.description %>
+  </li>
+<% end %>
+</ul>
