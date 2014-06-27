@@ -53,6 +53,11 @@ a{
   background-color: #16a085;
   border-color: #16a085;
 }
+
+.btn-primary:hover{
+  background-color: #16a085;
+  border-color: #16a085;
+}
 /* User sign in and sign forms. */
 .border-form-div {
   max-width: 300px;
@@ -80,4 +85,7 @@ a{
   padding: 7px 9px;
 }
 
+.devise_shared_links > a{
+  color: #16a085;
+}
 
