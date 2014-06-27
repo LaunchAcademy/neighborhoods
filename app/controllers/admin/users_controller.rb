@@ -30,6 +30,7 @@ class Admin::UsersController < ApplicationController
       render 'admin/users'
     end
   end
+
   private
 
   def authenticate_admin!
