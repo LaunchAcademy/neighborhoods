@@ -3,7 +3,7 @@
 
 <h2>Members</h2>
 <table>
-  <% if @members.count == 0 %>
+  <% if @members.any? %>
       <em>Currently no non-admin members</em>
   <% end %>
   <% @members.each do |member| %>
