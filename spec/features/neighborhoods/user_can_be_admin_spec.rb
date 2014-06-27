@@ -62,7 +62,6 @@ feature 'Admin logs in', %Q(
     }
 
     admin_user = User.create!(attrs)
-    save_and_open_page
     visit new_user_session_path
     fill_in 'Email', with: admin_user.email
     fill_in 'Password', with: admin_user.password

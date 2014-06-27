@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @members = User.where(role: :member)
     @admins = User.where(role: :admin)
@@ -26,6 +28,14 @@ class Admin::UsersController < ApplicationController
     else
       flash.now[:notice] = 'Something went wrong.'
       render 'admin/users'
+    end
+  end
+  private
+
+  def authenticate_admin!
+    unless current_user.role == 'admin'
+      flash[:alert] = 'You are not authorized to view this page.'
+      redirect_to root_url
     end
   end
 end
