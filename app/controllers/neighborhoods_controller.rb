@@ -22,6 +22,8 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
+    @review = Review.new
+    @reviews = Review.where(neighborhood_id: @neighborhood.id)
   end
 
   private
