@@ -47,13 +47,29 @@ feature 'users can upvote or downvote reviews', %Q(
     expect(votes).to eq(1)
   end
 
-  # scenario 'user successfully changes vote' do
+  scenario 'user successfully changes vote' do
+    hood = FactoryGirl.create(:neighborhood)
+    user = FactoryGirl.create(:user)
+    5.times do
+      review = FactoryGirl.create(:review, neighborhood: hood)
+    end
 
-  # end
+    sign_in_as(user)
+    visit neighborhood_path(hood)
+    first(:button, 'Downvote').click
+    first(:button, 'Upvote').click
 
-  # scenario 'site visitor tried to vote' do
+    votes = hood.reviews.first.votes.count
+    expect(page).to have_content 'Success! Your vote has been counted.'
+    expect(votes).to eq(1)
+  end
 
-  # end
+  scenario 'site visitor tried to vote' do
+    hood = FactoryGirl.create(:neighborhood)
+    visit neighborhood_path(hood)
+
+    expect(page).to have_content 'Please sign in to vote on reviews.'
+  end
 
 
 end

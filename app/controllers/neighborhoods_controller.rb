@@ -21,8 +21,12 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
-    @upvoted = upvoted(current_user, @neighborhood.reviews)
-    @downvoted = downvoted(current_user, @neighborhood.reviews)
+    if current_user
+      @upvoted = upvoted(current_user, @neighborhood.reviews)
+      @downvoted = downvoted(current_user, @neighborhood.reviews)
+    else
+      flash[:alert] = 'Please sign in to vote on reviews.'
+    end
   end
 
   private

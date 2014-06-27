@@ -1,17 +1,22 @@
 <h1><%= @neighborhood.name %></h1>
 <p><%= @neighborhood.description %></p>
+<p>Average Rating:</p>
 
 <h3>Reviews</h3>
 <ul>
 <% @neighborhood.reviews.each do |review| %>
   <li>
-    <strong>Rating: <%= review.rating %></strong><br>
+    <strong>Neighborhood Rating: <%= review.rating %></strong><br>
     <%= review.description %>
-    <% if !@upvoted.include?(review) %>
-      <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
-    <% end %>
-    <% if !@downvoted.include?(review) %>
-    <%= button_to 'Downvote', review_votes_path(review, weight: -1)%>
+    <% if current_user %>
+      <% if !@upvoted.include?(review) %>
+        <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
+      <% end %>
+      <% if !@downvoted.include?(review) %>
+      <%= button_to 'Downvote', review_votes_path(review, weight: -1)%>
+      <% end %>
+      Review Score: <br>
+      written by <%= review.user.email %>
     <% end %>
   </li>
 <% end %>
