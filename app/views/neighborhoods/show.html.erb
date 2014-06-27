@@ -6,6 +6,6 @@
 <% @neighborhood.reviews.each do |review| %>
   <li>
     <strong>Rating: <%= review.rating %></strong><br>
-    <%= review.description %> <%= link_to 'Upvote', review_votes_path(review, weight: 1), method: :update%>
+    <%= review.description %> <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
 <% end %>
 </ul>

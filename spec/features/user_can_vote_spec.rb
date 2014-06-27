@@ -22,16 +22,27 @@ feature 'users can upvote or downvote reviews', %Q(
       review = FactoryGirl.create(:review, neighborhood: hood)
     end
 
-
     sign_in_as(user)
     visit neighborhood_path(hood)
-    first(:link, 'Upvote').click
+    first(:button, 'Upvote').click
 
-    #need to check the vote_count column for reviews?
+    votes = hood.reviews.first.votes.count
     expect(page).to have_content 'Success! Your vote has been counted.'
+    expect(votes).to eq(1)
   end
 
-  # scenario 'user successfully upvotes' do
+  # scenario 'user successfully downvotes' do
+  #   hood = FactoryGirl.create(:neighborhood)
+  #   user = FactoryGirl.create(:user)
+  #   5.times do
+  #     review = FactoryGirl.create(:review, neighborhood: hood)
+  #   end
+
+  #   sign_in_as(user)
+  #   visit neighborhood_path(hood)
+  #   first(:button, 'Downvote').click
+
+  #   expect(page).to have_content 'Success! Your vote has been counted.'
 
   # end
 
