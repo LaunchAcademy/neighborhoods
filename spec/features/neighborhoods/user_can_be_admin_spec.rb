@@ -24,24 +24,6 @@ feature 'Admin logs in', %Q(
     expect(page).to have_content 'Pending Neighborhoods'
   end
 
-  scenario 'member logs in but does not see admin links' do
-    attrs = {
-      email: 'dog1111@face.com',
-      password: 'Secret12345',
-    }
-
-    user = User.create!(attrs)
-
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign in'
-
-    expect(page).to have_content 'Signed in successfully.'
-    expect(page).not_to have_content 'Edit Users'
-    expect(page).not_to have_content 'Pending Neighborhoods'
-  end
-
   scenario 'admin follows edit users link and sees the right content' do
     attrs = {
       email: 'dog1111@face.com',
@@ -80,7 +62,7 @@ feature 'Admin logs in', %Q(
     }
 
     admin_user = User.create!(attrs)
-
+    save_and_open_page
     visit new_user_session_path
     fill_in 'Email', with: admin_user.email
     fill_in 'Password', with: admin_user.password
