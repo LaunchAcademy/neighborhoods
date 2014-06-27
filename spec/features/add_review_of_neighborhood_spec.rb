@@ -20,7 +20,7 @@ feature 'users can review a neighborhood', %Q(
     sign_in_as(user)
     visit new_neighborhood_review_path(hood.id)
     fill_in 'Description', with: review.description
-    select(review.rating, :from => 'Rating')
+    select(review.rating, from: 'Rating')
     click_button 'Create Review'
 
     expect(page).to have_content 'Successfully added.'

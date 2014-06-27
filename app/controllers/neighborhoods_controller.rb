@@ -22,10 +22,6 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
   end
 
-  def update
-    binding.pry
-  end
-
   private
 
   def neighborhood_params
