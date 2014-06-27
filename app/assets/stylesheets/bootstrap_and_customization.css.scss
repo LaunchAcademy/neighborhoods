@@ -1,5 +1,38 @@
 @import 'bootstrap';
 
 body {
-  padding-top: 50px;
+  padding-top: 75px;
+    background-color: black;
+}
+
+.jumbotron {
+   background: url("/images/neighborhood.jpg") no-repeat;
+   background-position: center;
+   background-size: 100%;
+   color: white
+}
+
+.btn-success{
+  background-color: #16a085;
+  border-color: #16a085;
+}
+.homepage_hood {
+    width: 300px;
+    height: 150px;
+    border-radius: 5px;
+    background: #16a085;
+    padding-top: 30px;
+    margin: 10px;
+}
+
+a{
+  color: white;
+}
+
+.rating{
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  max-width: 45px;
+  margin-bottom: 10px;
 }
