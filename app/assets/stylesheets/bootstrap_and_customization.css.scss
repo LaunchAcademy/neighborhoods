@@ -20,7 +20,7 @@ body {
     width: 300px;
     height: 150px;
     border-radius: 5px;
-    background: #16a085;
+    background-color: #16a085;
     padding-top: 30px;
     margin: 10px;
 }
@@ -35,4 +35,16 @@ a{
   font-size: 20px;
   max-width: 45px;
   margin-bottom: 10px;
+}
+
+.navbar-inverse{
+  background-color: #16a085;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+  color: white;
+}
+
+.navbar-inverse .navbar-brand{
+  color: white;
 }
