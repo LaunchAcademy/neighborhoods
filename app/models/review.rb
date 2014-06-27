@@ -1,9 +1,8 @@
 class Review < ActiveRecord::Base
   validates :description, presence: true
-  validates :rating, numericality: {
-    greater_than_or_equal_to: 1,
-    less_than_or_equal_to: 10
-  }
+  validates :rating, inclusion: { in: 1..10 }
+  validates :user_id, presence: true
+  validates :neighborhood_id, presence: true
 
   belongs_to :user
   belongs_to :neighborhood

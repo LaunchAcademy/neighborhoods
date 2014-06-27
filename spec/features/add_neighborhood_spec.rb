@@ -37,7 +37,7 @@ feature 'users can add a neighborhood', %Q(
     expect(page).to have_content 'Could not save'
   end
 
-   scenario 'site visitor attempts to add neighborhood' do
+  scenario 'site visitor attempts to add neighborhood' do
 
     visit new_neighborhood_path
 

@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140626205128) do
   create_table "reviews", force: true do |t|
     t.text     "description",     null: false
     t.integer  "rating",          null: false
-    t.integer  "user_id"
-    t.integer  "neighborhood_id"
+    t.integer  "user_id",         null: false
+    t.integer  "neighborhood_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

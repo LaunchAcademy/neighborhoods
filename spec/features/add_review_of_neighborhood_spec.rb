@@ -18,7 +18,7 @@ feature 'users can review a neighborhood', %Q(
     review = FactoryGirl.build(:review)
 
     sign_in_as(user)
-    visit new_neighborhood_review_path(hood.id)
+    visit new_neighborhood_review_path(hood)
     fill_in 'Description', with: review.description
     select(review.rating, from: 'Rating')
     click_button 'Create Review'
@@ -31,7 +31,7 @@ feature 'users can review a neighborhood', %Q(
     hood = FactoryGirl.create(:neighborhood)
 
     sign_in_as(user)
-    visit new_neighborhood_review_path(hood.id)
+    visit new_neighborhood_review_path(hood)
     click_button 'Create Review'
 
     expect(page).to have_content 'Could not save.'
@@ -40,7 +40,7 @@ feature 'users can review a neighborhood', %Q(
   scenario 'visitor attempts to add review' do
     hood = FactoryGirl.create(:neighborhood)
 
-    visit new_neighborhood_review_path(hood.id)
+    visit new_neighborhood_review_path(hood)
 
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
