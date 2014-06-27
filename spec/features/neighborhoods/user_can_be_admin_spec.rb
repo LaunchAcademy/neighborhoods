@@ -73,6 +73,28 @@ feature 'Admin logs in', %Q(
     expect(page).to have_content admin_user.email
   end
 
+  scenario 'admin follows edit users link when there are no non-admin members' do
+    attrs = {
+      email: "dog1111@face.com",
+      password: "Secret12345",
+      role: "admin"
+    }
+
+    admin_user = User.create!(attrs)
+
+    visit new_user_session_path
+    fill_in 'Email', with: admin_user.email
+    fill_in 'Password', with: admin_user.password
+    click_button 'Sign in'
+
+    expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_content 'Edit Users'
+    click_on 'Edit Users'
+    # admin_user.reload
+    # member_user.reload
+    expect(page).to have_content 'Currently no non-admin members'
+    expect(page).to have_content admin_user.email
+  end
   # scenario to go to delete link
   scenario 'admin can delete user' do
     attrs = {
