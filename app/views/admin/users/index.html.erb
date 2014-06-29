@@ -1,0 +1,28 @@
+<h1>Edit Users - Admin Page</h1>
+  <em>These actions cannot be undone</em>
+
+<h2>Members</h2>
+<table>
+  <% if !@members.any? %>
+      <em>Currently no non-admin members</em>
+  <% end %>
+  <% @members.each do |member| %>
+  <tr>
+    <td>
+      <%= member.email %> -
+      <%= link_to 'Delete', admin_user_path(member), data: { confirm: "This action will permanently delete this user record. Are you sure?" }, method: :delete %> |
+      <%= link_to 'Promote', admin_user_path(member), data: { confirm: "Promotions are permanent. Are you sure?" }, method: :patch %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<h2>Admins</h2>
+<table>
+  <% @admins.each do |admin| %>
+  <tr>
+    <td>
+      <%= admin.email %>
+    </td>
+  </tr>
+  <% end %>
+</table>

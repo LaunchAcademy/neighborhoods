@@ -11,7 +11,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = current_user.neighborhoods.build(neighborhood_params)
 
     if @neighborhood.save
-      NeighborhoodMailer.welcome_email(@neighborhood).deliver
+      NeighborhoodMailer.new_neighborhood_email(@neighborhood).deliver
       flash[:notice] = "Success! Your neighborhood is pending approval."
       redirect_to neighborhood_path(@neighborhood)
     else
@@ -24,14 +24,13 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
   end
 
-  def approve_neighborhood(neighborhood)
-    user = neighborhood.user
-    neighborhood.approved = true
-    if neighborhood.save
-      user = neighborhood.user
-      NeighborhoodMailer.neighborhood_approved_email(neighborhood, user).deliver
-    end
-  end
+  # def approve_neighborhood(neighborhood)
+  #   neighborhood.approved = true
+  #   if neighborhood.save
+  #     user = neighborhood.user
+  #     NeighborhoodMailer.neighborhood_approved_email(neighborhood, user).deliver
+  #   end
+  # end
 
 
   private

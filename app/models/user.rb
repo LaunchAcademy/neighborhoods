@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
 
   has_many :neighborhoods
   has_many :reviews
+
+  def admin?
+    role == 'admin'
+  end
+
 end
