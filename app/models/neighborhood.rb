@@ -5,6 +5,7 @@ class Neighborhood < ActiveRecord::Base
   validates :name, presence: true
 
   def average_rating
-    reviews.average(:rating).round(2)
+    average = reviews.average(:rating) || 0
+    average.round(2)
   end
 end
