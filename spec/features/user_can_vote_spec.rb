@@ -14,7 +14,6 @@ feature 'users can upvote or downvote reviews', %Q(
 # User can vote only once per review
 # User can change vote from up to down or down to up
 
-
   scenario 'user successfully upvotes' do
     hood = FactoryGirl.create(:neighborhood)
     user = FactoryGirl.create(:user)
@@ -70,6 +69,4 @@ feature 'users can upvote or downvote reviews', %Q(
 
     expect(page).to have_content 'Please sign in to vote on reviews.'
   end
-
-
 end

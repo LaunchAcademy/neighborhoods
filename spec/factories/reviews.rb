@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :review do
-    sequence(:description) { |n| "Totally agree, of the top #{n} places to live in Boston." }
+    sequence(:description) { |n|
+      "Totally agree, of the top #{n} places to live in Boston." }
     rating 8
 
     user

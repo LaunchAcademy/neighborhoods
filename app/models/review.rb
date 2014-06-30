@@ -7,6 +7,4 @@ class Review < ActiveRecord::Base
   validates :rating, inclusion: { in: 1..10 }
   validates :user_id, presence: true
   validates :neighborhood_id, presence: true
-
-
 end
