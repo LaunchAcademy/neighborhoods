@@ -11,6 +11,7 @@ class Admin::NeighborhoodsController < ApplicationController
       neighborhood.approved = true
       if neighborhood.save
         flash[:notice] = 'Neighborhood has been approved'
+         NeighborhoodMailer.neighborhood_approved_email(@neighborhood).deliver
       else
         flash[:alert] = 'Neighborhood could not be approved'
       end
@@ -26,6 +27,7 @@ class Admin::NeighborhoodsController < ApplicationController
     neighborhood.destroy
     flash[:alert] = 'Neighborhood was rejected'
     redirect_to admin_neighborhoods_path
+    NeighborhoodMailer.neighborhood_declined_email(@neighborhood).deliver
   end
 
   # def update
