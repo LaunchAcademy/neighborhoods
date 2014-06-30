@@ -9,20 +9,26 @@
     <strong>Neighborhood Rating: <%= review.rating %></strong><br>
     <%= review.description %><br>
     Review Score: <%= review.total_votes %><br>
+
     <% if current_user %>
       <% vote = review.vote_from(current_user) %>
-      <% if !review.has_vote_from?(current_user) %>
+
+      <% if vote.present? %>
+        <% if vote.downvote? %>
+          <%= button_to 'Upvote', review_vote_path(review, vote, weight: 1),
+            method: :put %>
+        <% end %>
+
+        <% if vote.upvote? %>
+          <%= button_to 'Downvote', review_vote_path(review, vote, weight: -1),
+            method: :put %>
+        <% end %>
+      <% else %>
         <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
         <%= button_to 'Downvote', review_votes_path(review, weight: -1)%>
-      <% else %>
-        <% if vote.weight == -1 %>
-          <%= button_to 'Upvote', review_vote_path(review, vote, weight: 1), method: :put%>
-        <% end %>
-        <% if vote.weight == 1 %>
-        <%= button_to 'Downvote', review_vote_path(review, vote, weight: -1),  method: :put %>
-        <% end %>
       <% end %>
     <% end %>
+
     written by <%= review.user.email %>
   </li>
 <% end %>
