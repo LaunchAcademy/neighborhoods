@@ -112,7 +112,7 @@ a{
   padding: 19px 29px 29px;
   margin: 0 auto 20px;
   background-color: #fff;
-  border: 1px solid #e5e5e5;
+  border: 0px solid #e5e5e5;
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
@@ -135,5 +135,10 @@ a{
 
 .devise_shared_links > a{
   color: #16a085;
+}
+
+.modal-dialog{
+  max-width: 400px;
+  height: 100px;
 }
 
