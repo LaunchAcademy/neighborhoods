@@ -12,12 +12,12 @@ feature 'Admin visits neighborhoods dashboard', %Q(
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
 
-    visit admin_neighborhoods
-    click_on 'Approve'
+    sign_in_as(admin)
+    visit admin_neighborhoods_path
+
 
     expect(page).to have_content neighborhood.name
     expect(page).to have_content "Approve"
-    expect(page).to have_content "Decline"
     expect(page).to have_content "Delete"
   end
 
@@ -27,21 +27,12 @@ feature 'Admin visits neighborhoods dashboard', %Q(
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
 
-    visit admin_neighborhoods
+    sign_in_as(admin)
+    visit admin_neighborhoods_path
     click_on 'Approve'
 
-    expect(page).to have_content 'Neighborhood approved'
-  end
+    expect(page).to have_content 'Neighborhood has been approved'
 
-  scenario 'admin decline neighborhood' do
-
-    admin = FactoryGirl.create(:admin)
-    neighborhood = FactoryGirl.create(:neighborhood)
-
-    visit admin_neighborhoods
-    click_on 'Decline'
-
-    expect(page).to have_content 'Neighborhood declined'
   end
 
   scenario 'admin deleted neighborhood' do
@@ -49,10 +40,11 @@ feature 'Admin visits neighborhoods dashboard', %Q(
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
 
-    visit admin_neighborhoods
+    sign_in_as(admin)
+    visit admin_neighborhoods_path
     click_on 'Delete'
 
-    expect(page).to have_content 'Neighborhood Delete'
+    expect(page).to have_content 'Neighborhood was rejected'
     expect(page).not_to have_content neighborhood.name
   end
 end

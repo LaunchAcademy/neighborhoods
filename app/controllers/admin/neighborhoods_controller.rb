@@ -21,13 +21,11 @@ class Admin::NeighborhoodsController < ApplicationController
   end
 
 
-
-
-  def decline
-  end
-
-
   def destroy
+    neighborhood = Neighborhood.find(params[:id])
+    neighborhood.destroy
+    flash[:alert] = 'Neighborhood was rejected'
+    redirect_to admin_neighborhoods_path
   end
 
   # def update
