@@ -21,6 +21,9 @@ class NeighborhoodsController < ApplicationController
 
   def show
     @neighborhood = Neighborhood.find(params[:id])
+    if !current_user
+      flash[:alert] = 'Please sign in to vote on reviews.'
+    end
   end
 
   private

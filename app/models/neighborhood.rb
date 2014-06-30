@@ -3,4 +3,9 @@ class Neighborhood < ActiveRecord::Base
   has_many :reviews
 
   validates :name, presence: true
+
+  def average_rating
+    average = reviews.average(:rating) || 0
+    average.round(2)
+  end
 end
