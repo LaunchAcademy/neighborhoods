@@ -21,7 +21,6 @@ class Admin::NeighborhoodsController < ApplicationController
     end
   end
 
-
   def destroy
     neighborhood = Neighborhood.find(params[:id])
     neighborhood.destroy
@@ -29,31 +28,6 @@ class Admin::NeighborhoodsController < ApplicationController
     redirect_to admin_neighborhoods_path
     NeighborhoodMailer.neighborhood_declined_email(@neighborhood).deliver
   end
-
-  # def update
-  #   @member = User.find(params[:id])
-  #   @member.role = 'admin'
-  #   @member.save
-  #   if @member.role == 'admin'
-  #     flash[:notice] = 'User has been promoted'
-  #     redirect_to admin_users_path
-  #   else
-  #     flash.now[:notice] = 'Something went wrong.'
-  #     render 'admin/users'
-  #   end
-  # end
-
-  # def destroy
-  #   @member = User.find(params[:id])
-  #   if @member
-  #     @member.destroy
-  #     flash[:notice] = 'User has been deleted'
-  #     redirect_to admin_users_path
-  #   else
-  #     flash.now[:notice] = 'Something went wrong.'
-  #     render 'admin/users'
-  #   end
-  # end
 
   private
   def hood

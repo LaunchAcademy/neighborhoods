@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature 'Admin visits neighborhoods dashboard', %Q(
   As admin
   I can approve, decline, delete neighborhoods.
@@ -11,16 +10,13 @@ feature 'Admin visits neighborhoods dashboard', %Q(
 
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
-
     sign_in_as(admin)
     visit admin_neighborhoods_path
-
 
     expect(page).to have_content neighborhood.name
     expect(page).to have_content "Approve"
     expect(page).to have_content "Delete"
   end
-
 
   scenario 'admin approved neighborhood' do
 
@@ -32,7 +28,6 @@ feature 'Admin visits neighborhoods dashboard', %Q(
     click_on 'Approve'
 
     expect(page).to have_content 'Neighborhood has been approved'
-
   end
 
   scenario 'admin deleted neighborhood' do
