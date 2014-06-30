@@ -1,23 +1,28 @@
-<div class="neighborhood_title"><%= @neighborhood.name %></div>
-<div class="neighborhood_detail"><p><%= @neighborhood.description %></p></div>
+<div class="neighborhood_title">
+  <%= @neighborhood.name %>
+</div>
+
+<div class="neighborhood_detail">
+  <p><%= @neighborhood.description %></p>
+</div>
 
 <h3 style="color: #16a085">Reviews</h3>
-<%= link_to "Add Review", "/neighborhoods/#{params[:id]}/reviews/new" %><br>
+  <%= link_to "Add Review", "/neighborhoods/#{params[:id]}/reviews/new" %><br>
 
 <table class="table">
-    <% @neighborhood.reviews.each do |review| %>
-  <tr>
-    <td class="review_score">
-      Rating:<br> <%= review.rating %>
-    </td>
-    <td class="neighborhood_review">
-      <%= review.description %>
-    </td>
-    <td class="edit_review">
-      <%=link_to 'edit', "#" %>
-      <%=link_to 'delete', "#" %>
-    </td>
-  </tr>
-    <% end %>
+  <% @neighborhood.reviews.each do |review| %>
+    <tr>
+      <td class="review_score">
+        Rating:<br> <%= review.rating %>
+      </td>
+      <td class="neighborhood_review">
+        <%= review.description %>
+      </td>
+      <td class="edit_review">
+        <%=link_to 'edit', "#" %>
+        <%=link_to 'delete', "#" %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
