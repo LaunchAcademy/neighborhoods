@@ -7,4 +7,16 @@ class Review < ActiveRecord::Base
   validates :rating, inclusion: { in: 1..10 }
   validates :user_id, presence: true
   validates :neighborhood_id, presence: true
+
+  def vote_from(user)
+    votes.find_by(user_id: user.id)
+  end
+
+  def has_vote_from?(user)
+    votes.find_by(user_id: user.id).present?
+  end
+
+  def total_votes
+    votes.sum(:weight)
+  end
 end

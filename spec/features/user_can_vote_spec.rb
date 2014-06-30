@@ -17,9 +17,7 @@ feature 'users can upvote or downvote reviews', %Q(
   scenario 'user successfully upvotes' do
     hood = FactoryGirl.create(:neighborhood)
     user = FactoryGirl.create(:user)
-    5.times do
-      review = FactoryGirl.create(:review, neighborhood: hood)
-    end
+    FactoryGirl.create_list(:review, 5, neighborhood: hood)
 
     sign_in_as(user)
     visit neighborhood_path(hood)
@@ -33,9 +31,7 @@ feature 'users can upvote or downvote reviews', %Q(
   scenario 'user successfully downvotes' do
     hood = FactoryGirl.create(:neighborhood)
     user = FactoryGirl.create(:user)
-    5.times do
-      review = FactoryGirl.create(:review, neighborhood: hood)
-    end
+    FactoryGirl.create_list(:review, 5, neighborhood: hood)
 
     sign_in_as(user)
     visit neighborhood_path(hood)
@@ -49,9 +45,7 @@ feature 'users can upvote or downvote reviews', %Q(
   scenario 'user successfully changes vote' do
     hood = FactoryGirl.create(:neighborhood)
     user = FactoryGirl.create(:user)
-    5.times do
-      review = FactoryGirl.create(:review, neighborhood: hood)
-    end
+    FactoryGirl.create_list(:review, 5, neighborhood: hood)
 
     sign_in_as(user)
     visit neighborhood_path(hood)
