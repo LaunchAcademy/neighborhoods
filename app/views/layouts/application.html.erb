@@ -33,10 +33,14 @@
             <li>
               <%= link_to('Edit Profile', edit_user_registration_path)  %>
             </li>
+
             <li>
               <%= link_to('Recommend Neighborhood', "#", "data-toggle" => "modal", 'data-target' => '#editneighborhood')   %>
             </li>
-
+              <% if current_user.admin? %>
+                <li><%= link_to('Edit Users', admin_users_path) %></li>
+                <li><%= link_to('Pending Neighborhoods', edit_user_registration_path) %></li>
+              <% end %>
           <% else %>
             <li>
               <%= link_to('Sign in', "#", "data-toggle" => "modal", 'data-target' => '#signinmodal')   %>
