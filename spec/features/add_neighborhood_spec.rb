@@ -18,10 +18,12 @@ feature 'users can add a neighborhood', %Q(
     hood = FactoryGirl.build(:neighborhood)
 
     sign_in_as(user)
-    visit new_neighborhood_path
-    fill_in 'Name', with: hood.name
-    fill_in 'Description', with: hood.description
-    click_button 'Create Neighborhood'
+    click_link 'Recommend Neighborhood'
+    within('#new-neighborhood') do
+      fill_in 'Name', with: hood.name
+      fill_in 'Description', with: hood.description
+      click_button('Create Neighborhood', :match => :first)
+    end
 
     expect(page).to have_content 'Success! Your neighborhood is pending approval.'
   end
@@ -32,7 +34,7 @@ feature 'users can add a neighborhood', %Q(
 
     sign_in_as(user)
     visit new_neighborhood_path
-    click_button 'Create Neighborhood'
+    click_button('Create Neighborhood', :match => :first)
 
     expect(page).to have_content 'Could not save'
   end

@@ -21,11 +21,12 @@ feature 'user signs out', %Q(
     user = User.create!(attrs)
 
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
 
-    click_button 'Sign in'
-
+    within('#signinmodal') do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Sign in'
+    end
     click_on 'Sign out'
 
     expect(page).to have_content 'Signed out'

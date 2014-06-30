@@ -23,11 +23,12 @@ feature 'user signs up or registers', %Q(
     user = User.new(attrs)
 
     visit new_user_registration_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
-
+    within('.signup') do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_on 'Sign up'
+    end
     expect(page).to have_content 'Welcome! You have signed up successfully.'
 
   end
@@ -42,9 +43,11 @@ feature 'user signs up or registers', %Q(
     user = User.new(attrs)
 
     visit new_user_registration_path
-    fill_in 'Password', with: user.password
-    fill_in 'Password confirmation', with: user.password_confirmation
-    click_on 'Sign up'
+    within('.signup') do
+      fill_in 'Password', with: user.password
+      fill_in 'Password confirmation', with: user.password_confirmation
+      click_on 'Sign up'
+    end
 
     expect(page).not_to have_content(
       'Welcome! You have signed up successfully.')
@@ -59,9 +62,10 @@ feature 'user signs up or registers', %Q(
     user = User.new(attrs)
 
     visit new_user_registration_path
-    fill_in 'Email', with: user.email
-    click_on 'Sign up'
-
+    within('.signup') do
+      fill_in 'Email', with: user.email
+      click_on 'Sign up'
+    end
     expect(page).not_to have_content (
       'Welcome! You have signed up successfully.')
     expect(page).to have_content 'Password can\'t be blank'
