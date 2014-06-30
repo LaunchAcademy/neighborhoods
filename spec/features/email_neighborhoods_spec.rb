@@ -20,7 +20,6 @@
 #     fill_in 'Name', with: hood.name
 #     fill_in 'Description', with: hood.description
 
-
 #     # upon registering, a confirmation email should be delivered,
 #     # so ActionMailer::Base.deliveries should include the email:
 #     expect(ActionMailer::Base.deliveries.size).to eql(1)

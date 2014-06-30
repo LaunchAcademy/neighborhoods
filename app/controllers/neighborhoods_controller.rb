@@ -28,10 +28,10 @@ class NeighborhoodsController < ApplicationController
   #   neighborhood.approved = true
   #   if neighborhood.save
   #     user = neighborhood.user
-  #     NeighborhoodMailer.neighborhood_approved_email(neighborhood, user).deliver
+  #     NeighborhoodMailer.neighborhood_approved_email(neighborhood, user)
+  # => .deliver
   #   end
   # end
-
 
   private
 
