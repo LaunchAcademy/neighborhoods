@@ -21,7 +21,7 @@ class NeighborhoodMailer < ActionMailer::Base
     mail(to: @user.email, subject: '@neighborhood.name Declined')
   end
 
-  def neighorhood_review_email(neighborhood)
+  def neighborhood_review_email(neighborhood)
     @neighborhood = neighborhood
     @user = @neighborhood.user
     mail(to: @user.email, subject: '@neighborhood.name received a review')
