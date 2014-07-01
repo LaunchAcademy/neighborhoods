@@ -14,10 +14,22 @@ feature 'users can search neighborhood', %Q(
 
     hood = FactoryGirl.create(:neighborhood)
 
-    visit new_neighborhood_review_path(hood)
-    fill_in 'Description', with: review.description
-    select(review.rating, from: 'Rating')
-    click_button 'Create Review'
+    visit neighborhoods
+    fill_in 'Search', with: hood.name
+    click_button 'Search'
 
-    expect(page).to have_content 'Successfully added.'
+    expect(page).to have_content hood.name
   end
+
+  scenario "user searches for something that doesn't exist" do
+
+    hood = FactoryGirl.create(:neighborhood)
+
+    visit neighborhoods
+    fill_in 'Search', with: 'qwerty'
+    click_button 'Search'
+
+    expect(page).not_to have_content 'Read the reviews'
+  end
+
+end
