@@ -19,8 +19,10 @@ feature 'users can review a neighborhood', %Q(
 
     sign_in_as(user)
     visit new_neighborhood_review_path(hood)
-    fill_in 'Description', with: review.description
-    select(review.rating, from: 'Rating')
+    within('.dogface') do
+      fill_in 'Description', with: review.description
+      select(review.rating, from: 'Rating')
+    end
     click_button 'Create Review'
     save_and_open_page
     expect(page).to have_content 'Successfully added.'

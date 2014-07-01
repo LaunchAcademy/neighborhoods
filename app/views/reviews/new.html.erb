@@ -1,7 +1,9 @@
 <h1>Add a Review for <%=@neighborhood.name%></h1>
 
-<%= simple_form_for [@neighborhood, @review] do |f| %>
-  <%= f.input :description %>
-  <%= f.input :rating, collection: 1..10 %><br>
-  <%= f.button :submit , class: 'btn btn-primary' %>
-<% end %>
+<div class="dogface">
+  <%= simple_form_for [@neighborhood, @review] do |f| %>
+    <%= f.input :description %>
+    <%= f.input :rating, collection: 1..10 %><br>
+    <%= f.button :submit , class: 'btn btn-primary' %>
+  <% end %>
+</div>
