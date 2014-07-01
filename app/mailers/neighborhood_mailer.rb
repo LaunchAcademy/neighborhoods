@@ -12,20 +12,20 @@ class NeighborhoodMailer < ActionMailer::Base
   def neighborhood_approved_email(neighborhood)
     @neighborhood = neighborhood
     @user = @neighborhood.user
-    mail(to: @user.email, subject: "@neighborhood.name Aprroved")
+    mail(to: @user.email, subject: "#{@neighborhood.name} Aprroved")
   end
 
   # email when a neighborhood is declined
-  def neighorhood_declined_email(neighborhood)
+  def neighborhood_declined_email(neighborhood)
     @neighborhood = neighborhood
     @user = @neighborhood.user
-    mail(to: @user.email, subject: "@neighborhood.name Declined")
+    mail(to: @user.email, subject: "#{@neighborhood.name} Declined")
   end
 
   # email when a review is create
   def neighborhood_review_email(neighborhood)
     @neighborhood = neighborhood
     @user = @neighborhood.user
-    mail(to: @user.email, subject: "@neighborhood.name received a review")
+    mail(to: @user.email, subject: "#{@neighborhood.name} received a review")
   end
 end
