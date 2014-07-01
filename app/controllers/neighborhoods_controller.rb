@@ -1,7 +1,10 @@
 class NeighborhoodsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
-  
+
   def index
+  end
+
+  def search
   end
 
   def new

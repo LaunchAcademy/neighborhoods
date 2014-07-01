@@ -14,7 +14,7 @@ feature 'users can search neighborhood', %Q(
 
     hood = FactoryGirl.create(:neighborhood)
 
-    visit neighborhoods
+    visit neighborhoods_path
     fill_in 'Search', with: hood.name
     click_button 'Search'
 
@@ -25,7 +25,7 @@ feature 'users can search neighborhood', %Q(
 
     hood = FactoryGirl.create(:neighborhood)
 
-    visit neighborhoods
+    visit neighborhoods_path
     fill_in 'Search', with: 'qwerty'
     click_button 'Search'
 
