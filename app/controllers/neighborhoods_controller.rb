@@ -1,5 +1,6 @@
 class NeighborhoodsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  
   def index
   end
 
@@ -23,15 +24,6 @@ class NeighborhoodsController < ApplicationController
   def show
     @neighborhood = Neighborhood.find(params[:id])
   end
-
-  # def approve_neighborhood(neighborhood)
-  #   neighborhood.approved = true
-  #   if neighborhood.save
-  #     user = neighborhood.user
-  #     NeighborhoodMailer.neighborhood_approved_email(neighborhood, user)
-  # => .deliver
-  #   end
-  # end
 
   private
 
