@@ -43,5 +43,3 @@ feature 'Admin visits neighborhoods dashboard', %Q(
     expect(page).not_to have_content neighborhood.name
   end
 end
-
-
