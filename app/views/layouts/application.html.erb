@@ -31,11 +31,11 @@
               <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
             </li>
             <li>
-              <%= link_to('Edit Profile', edit_user_registration_path, "data-toggle" => "modal", 'data-target' => '#edit-profilemodal', 'data-remote' => 'false')   %>
+              <%= link_to('Edit Profile', edit_user_registration_path, data: {toggle: "modal", target: '#edit-profilemodal', remote: 'false'})  %>
             </li>
-
             <li>
-              <%= link_to('Recommend Neighborhood', new_neighborhood_path, "data-toggle" => "modal", 'data-target' => '#new-neighborhood', 'data-remote' => 'false')   %>
+              <%= link_to('Recommend Neighborhood', new_neighborhood_path, data: {toggle: 'modal', target:
+                '#new-neighborhood', remote: 'false'})   %>
             </li>
               <% if current_user.admin? %>
                 <li><%= link_to('Edit Users', admin_users_path) %></li>
@@ -43,7 +43,7 @@
               <% end %>
           <% else %>
             <li>
-              <%= link_to('Sign in', "#", "data-toggle" => "modal", 'data-target' => '#signinmodal')   %>
+              <%= link_to('Sign in', "#", data: {toggle: "modal", target: '#signinmodal'})  %>
             </li>
           <% end %>
         </ul>
