@@ -7,7 +7,6 @@ feature 'Admin visits neighborhoods dashboard', %Q(
 ) do
 
   scenario 'visits admin neighborhood page' do
-
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
     sign_in_as(admin)
@@ -19,19 +18,18 @@ feature 'Admin visits neighborhoods dashboard', %Q(
   end
 
   scenario 'admin approved neighborhood' do
-
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
 
     sign_in_as(admin)
     visit admin_neighborhoods_path
+    save_and_open_page
     click_on 'Approve'
 
     expect(page).to have_content 'Neighborhood has been approved'
   end
 
   scenario 'admin deleted neighborhood' do
-
     admin = FactoryGirl.create(:admin)
     neighborhood = FactoryGirl.create(:neighborhood)
 
