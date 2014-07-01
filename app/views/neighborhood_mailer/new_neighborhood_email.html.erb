@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dear Admin, <%= @admin.email %></h1>
+    <p>
+      A new neighborhood (<%= @neighborhood.name %>) has been submited for your approval.<br>
+    </p>
+    <p>
+      Please go t <%= link_to "Neighborhoods", neighborhoods_path %> to approve or decline.
+    </p>
+    <p>Thanks for being awesome and have a great day!</p>
+  </body>
+</html>

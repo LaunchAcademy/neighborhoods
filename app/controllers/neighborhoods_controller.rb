@@ -1,5 +1,6 @@
 class NeighborhoodsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  
   def index
   end
 
@@ -11,6 +12,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = current_user.neighborhoods.build(neighborhood_params)
 
     if @neighborhood.save
+      NeighborhoodMailer.new_neighborhood_email(@neighborhood).deliver
       flash[:notice] = "Success! Your neighborhood is pending approval."
       redirect_to neighborhood_path(@neighborhood)
     else
