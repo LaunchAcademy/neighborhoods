@@ -15,10 +15,12 @@ feature 'Admin logs in', %Q(
     user = User.create!(attrs)
 
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign in'
 
+    within('#signinmodal') do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_button 'Sign in'
+    end
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content 'Edit Users'
     expect(page).to have_content 'Pending Neighborhoods'
@@ -41,9 +43,11 @@ feature 'Admin logs in', %Q(
     member_user = User.create!(attrs)
 
     visit new_user_session_path
-    fill_in 'Email', with: admin_user.email
-    fill_in 'Password', with: admin_user.password
-    click_button 'Sign in'
+    within('#signinmodal') do
+      fill_in 'Email', with: admin_user.email
+      fill_in 'Password', with: admin_user.password
+      click_button 'Sign in'
+    end
 
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content 'Edit Users'
@@ -63,10 +67,11 @@ feature 'Admin logs in', %Q(
 
     admin_user = User.create!(attrs)
     visit new_user_session_path
-    fill_in 'Email', with: admin_user.email
-    fill_in 'Password', with: admin_user.password
-    click_button 'Sign in'
-
+    within('#signinmodal') do
+      fill_in 'Email', with: admin_user.email
+      fill_in 'Password', with: admin_user.password
+      click_button 'Sign in'
+    end
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content 'Edit Users'
     click_on 'Edit Users'

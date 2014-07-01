@@ -1,1 +1,18 @@
-Hi!
+<div class="container">
+  <div class="jumbotron">
+    <h1>Neighborhoods</h1>
+    <p class="lead">Find, rate, review spots in Boston </p>
+    <% if !user_signed_in? %>
+      <p><a class="btn btn-lg btn-success" href= "/users/sign_up" role="button">Sign up!</a></p>
+    <% end %>
+  </div>
+
+  <div class="row neighborhood_home">
+    <% @neighborhoods.each do |neighborhood| %>
+      <div class="col-lg-4">
+        <div class="homepage_hood"><h4><%= neighborhood.name %></h4><div class="rating">9.2</div>
+      <%=link_to "Read the reviews!", neighborhood %></div>
+      </div>
+    <% end %>
+  </div>
+</div> <!-- /container -->

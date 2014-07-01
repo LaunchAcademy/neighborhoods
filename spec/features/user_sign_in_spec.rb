@@ -20,18 +20,21 @@ require 'rails_helper'
       user = User.create!(attrs)
 
       visit new_user_session_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
-
+      within('#signinmodal') do
+        fill_in 'Email', with: user.email
+        fill_in 'Password', with: user.password
+        click_button 'Sign in'
+      end
       expect(page).to have_content 'Signed in successfully.'
     end
 
     scenario 'user tries to sign in without an account' do
       visit new_user_session_path
-      fill_in 'Email', with: 'dog@face.com'
-      fill_in 'Password', with: 'Secret12345'
-      click_button 'Sign in'
+      within('#signinmodal') do
+        fill_in 'Email', with: 'dog@face.com'
+        fill_in 'Password', with: 'Secret12345'
+        click_button 'Sign in'
+      end
 
       expect(page).not_to have_content 'Signed in successfully.'
       expect(page).to have_content 'Invalid'
