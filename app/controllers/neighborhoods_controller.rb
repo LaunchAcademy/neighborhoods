@@ -3,7 +3,6 @@ class NeighborhoodsController < ApplicationController
 
   def index
     @neighborhoods = Neighborhood.all
-    @neighborhood = Neighborhood.new
   end
 
   def new
