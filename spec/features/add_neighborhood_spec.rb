@@ -14,7 +14,7 @@ feature 'users can add a neighborhood', %Q(
 # I can provide details about the neighborhood
 
   scenario 'user successfully adds neighborhood' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, email: "agrinb@gmail.com")
     hood = FactoryGirl.build(:neighborhood)
 
     sign_in_as(user)

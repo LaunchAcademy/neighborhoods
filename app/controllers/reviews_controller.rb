@@ -12,6 +12,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     if @review.save
       flash[:notice] = 'Successfully added.'
+      NeighborhoodMailer.neighborhood_review_email(@neighborhood).deliver
       redirect_to neighborhood_path(@review.neighborhood)
     else
       flash[:alert] = 'Could not save.'

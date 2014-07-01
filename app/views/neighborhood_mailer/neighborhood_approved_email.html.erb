@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dear <%= @user.email %></h1>
+      <p>
+        Congratulations! <%= @neighborhood.name %> has been approved.<br>
+      </p>
+      <p>
+        Please visit <%= link_to @neighborhood.name, new_neighborhood_review_path(@neighborhood) %> to leave a review.
+      </p>
+      <p>Thanks for being awesome and have a great day!</p>
+  </body>
+</html>

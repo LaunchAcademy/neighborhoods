@@ -1,28 +1,51 @@
-<div class="neighborhood_title">
-  <%= @neighborhood.name %>
-</div>
+<div class="neighborhood_title"><%= @neighborhood.name %></div>
 
-<div class="neighborhood_detail">
-  <p><%= @neighborhood.description %></p>
-</div>
+<div class="neighborhood_detail"><%= @neighborhood.description %></div>
 
-<h3 style="color: #16a085">Reviews</h3>
-  <%= link_to "Add Review", "/neighborhoods/#{params[:id]}/reviews/new" %><br>
+<h2>Average Rating: <%= @neighborhood.average_rating %></h2>
 
-<table class="table">
+<h2><%= link_to "Add Review", "/neighborhoods/#{params[:id]}/reviews/new" %></h2>
+
   <% @neighborhood.reviews.each do |review| %>
-    <tr>
-      <td class="review_score">
-        Rating:<br> <%= review.rating %>
-      </td>
-      <td class="neighborhood_review">
-        <%= review.description %>
-      </td>
-      <td class="edit_review">
-        <%=link_to 'edit', "#" %>
-        <%=link_to 'delete', "#" %>
-      </td>
-    </tr>
-  <% end %>
+<table class="table">
+  <td>
+    <%= review.total_votes %>
+  </td>
+    <% if current_user %>
+    <% vote = review.vote_from(current_user) %>
+
+    <% if vote.present? %>
+    <% if vote.downvote? %>
+  <td>
+      <button type="button">
+       <%=link_to"",review_vote_path(review, vote, weight: 1),
+          method: :put, class: "glyphicon glyphicon-arrow-up"%>
+      </button>
+  </td>
+    <% end %>
+
+    <% if vote.upvote? %>
+  <td>
+      <button type="button">
+       <%=link_to"",review_vote_path(review, vote, weight: -1),
+          method: :put, class: "glyphicon glyphicon-arrow-down"%>
+      </button>
+  </td>
+    <% end %>
+    <% else %>
+  <td>
+    <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
+    <%= button_to 'Downvote', review_votes_path(review, weight: -1)%>
+  </td>
+    <% end %>
+    <% end %>
+  <td>
+    <%= review.description %>
+  </td>
+  <td>
+    written by <%= review.user.email %>
+  </td>
 </table>
+<% end %>
+
 

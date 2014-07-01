@@ -61,16 +61,6 @@ a{
   font-size: 18px;
 }
 
-.review_score{
-  background-color: white;
-  max-width: 20px;
-  min-width: 20px;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
-  font-weight: bold;
-  text-align: center;
-}
 
 .edit_review{
   color: #16a085;
@@ -82,11 +72,13 @@ a{
   color: #16a085;
 }
 
-.neighborhood_review{
+.table{
+  color: black;
   background-color: white;
-  border-color: black;
-  border-style: solid;
-  border-width: 1px;
+}
+
+.td{
+  text-align: left;
 }
 
 .navbar-inverse{
@@ -146,5 +138,7 @@ a{
   height: 100px;
 }
 
-
+ a.glyphicon{
+ color: black;
+}
 
