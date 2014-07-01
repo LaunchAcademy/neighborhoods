@@ -24,7 +24,6 @@ feature 'users can review a neighborhood', %Q(
       select(review.rating, from: 'Rating')
     end
     click_button 'Create Review'
-    save_and_open_page
     expect(page).to have_content 'Successfully added.'
   end
 
