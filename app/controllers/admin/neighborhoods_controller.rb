@@ -7,24 +7,24 @@ class Admin::NeighborhoodsController < ApplicationController
   end
 
   def update
-    neighborhood = Neighborhood.find(params[:id])
+    @neighborhood = Neighborhood.find(params[:id])
     if params[:approved]
-      neighborhood.approved = true
-      if neighborhood.save
+      @neighborhood.approved = true
+      if @neighborhood.save
         flash[:notice] = "Neighborhood has been approved"
         NeighborhoodMailer.neighborhood_approved_email(@neighborhood).deliver
       else
         flash[:alert] = "Neighborhood could not be approved"
       end
-      redirect_to admin_neighborhoods_path
     else
       flash[:alert] = "Neighborhood was declined"
     end
+    redirect_to admin_neighborhoods_path
   end
 
   def destroy
-    neighborhood = Neighborhood.find(params[:id])
-    neighborhood.destroy
+    @neighborhood = Neighborhood.find(params[:id])
+    @neighborhood.destroy
     flash[:alert] = "Neighborhood was rejected"
     redirect_to admin_neighborhoods_path
     NeighborhoodMailer.neighborhood_declined_email(@neighborhood).deliver
