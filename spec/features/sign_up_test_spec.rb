@@ -14,19 +14,13 @@ feature 'user signs up or registers', %Q(
   # I am presented with a success message if I sign up successfully
 
   scenario 'user signs up successfully' do
-    attrs = {
-      email: "dog@face.com",
-      password: "Secret12345",
-      password_confirmation: "Secret12345"
-    }
-
-    user = User.new(attrs)
+    user = FactoryGirl.build(:user)
 
     visit new_user_registration_path
     within('.signup') do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
-      fill_in 'Password confirmation', with: user.password_confirmation
+      fill_in 'Password confirmation', with: user.password
       click_on 'Sign up'
     end
     expect(page).to have_content 'Welcome! You have signed up successfully.'
@@ -34,13 +28,7 @@ feature 'user signs up or registers', %Q(
   end
 
   scenario 'user gets error message if email missing' do
-
-    attrs = {
-      password: "Secret12345",
-      password_confirmation: "Secret12345"
-    }
-
-    user = User.new(attrs)
+    user = FactoryGirl.build(:user)
 
     visit new_user_registration_path
     within('.signup') do
@@ -55,11 +43,7 @@ feature 'user signs up or registers', %Q(
   end
 
   scenario 'user gets error message if password missing' do
-    attrs = {
-      email: "Dogface@gmail.com",
-    }
-
-    user = User.new(attrs)
+    user = FactoryGirl.build(:user)
 
     visit new_user_registration_path
     within('.signup') do

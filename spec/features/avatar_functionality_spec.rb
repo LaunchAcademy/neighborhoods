@@ -17,13 +17,7 @@ feature 'users can add an avatar', %Q(
   # and can browse for another file.
 
   scenario 'user sees the proper field and browse and upload buttons' do
-    attrs = {
-      email: "dog@face.com",
-      password: "Secret12345",
-
-    }
-
-    user = User.create(attrs)
+    user = FactoryGirl.create(:user)
 
     sign_in_as(user)
 

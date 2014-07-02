@@ -6,96 +6,45 @@ feature 'Admin logs in', %Q(
 ) do
 
   scenario 'admin logs in successfully' do
-    attrs = {
-      email: 'dog1111@face.com',
-      password: 'Secret12345',
-      role: 'admin'
-    }
+    admin = FactoryGirl.create(:user, role: "admin")
+    sign_in_as(admin)
 
-    user = User.create!(attrs)
-
-    visit new_user_session_path
-
-    within('#signinmodal') do
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
-    end
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content 'Edit Users'
     expect(page).to have_content 'Pending Neighborhoods'
   end
 
   scenario 'admin follows edit users link and sees the right content' do
-    attrs = {
-      email: 'dog1111@face.com',
-      password: 'Secret12345',
-      role: 'admin'
-    }
+    admin = FactoryGirl.create(:user, role: "admin")
+    member = FactoryGirl.create(:user)
 
-    admin_user = User.create!(attrs)
-
-    attrs = {
-      email: 'cat2@face.com',
-      password: 'Secret12345',
-    }
-
-    member_user = User.create!(attrs)
-
-    visit new_user_session_path
-    within('#signinmodal') do
-      fill_in 'Email', with: admin_user.email
-      fill_in 'Password', with: admin_user.password
-      click_button 'Sign in'
-    end
+    sign_in_as(admin)
 
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content 'Edit Users'
     click_on 'Edit Users'
     expect(page).to have_content 'Edit Users - Admin Page'
-    expect(page).to have_content member_user.email
-    expect(page).to have_content admin_user.email
+    expect(page).to have_content member.email
+    expect(page).to have_content admin.email
   end
 
   scenario 'admin follows edit users link when there
             are no non-admin members' do
-    attrs = {
-      email: 'dog1111@face.com',
-      password: 'Secret12345',
-      role: 'admin'
-    }
+    admin = FactoryGirl.create(:user, role: "admin")
+    sign_in_as(admin)
 
-    admin_user = User.create!(attrs)
-    visit new_user_session_path
-    within('#signinmodal') do
-      fill_in 'Email', with: admin_user.email
-      fill_in 'Password', with: admin_user.password
-      click_button 'Sign in'
-    end
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content 'Edit Users'
     click_on 'Edit Users'
     expect(page).to have_content 'Currently no non-admin members'
-    expect(page).to have_content admin_user.email
+    expect(page).to have_content admin.email
   end
 
   scenario 'admin can delete user' do
-    attrs = {
-      email: 'dog1111@face.com',
-      password: 'Secret12345',
-      role: 'admin'
-    }
+    admin = FactoryGirl.create(:user, role: "admin")
+    member = FactoryGirl.create(:user)
 
-    admin_user = User.create!(attrs)
-
-    attrs = {
-      email: 'cat1111@face.com',
-      password: 'Secret12345',
-    }
-
-    member_user = User.create!(attrs)
-
-    sign_in_as(admin_user)
+    sign_in_as(admin)
 
     visit admin_users_path
     click_on 'Delete'
@@ -104,22 +53,10 @@ feature 'Admin logs in', %Q(
   end
 
   scenario 'admin can promote user to admin' do
-    attrs = {
-      email: 'dog1111@face.com',
-      password: 'Secret12345',
-      role: 'admin'
-    }
+    admin = FactoryGirl.create(:user, role: "admin")
+    member = FactoryGirl.create(:user)
 
-    admin_user = User.create!(attrs)
-
-    attrs = {
-      email: 'cat1111@face.com',
-      password: 'Secret12345',
-    }
-
-    member_user = User.create!(attrs)
-
-    sign_in_as(admin_user)
+    sign_in_as(admin)
 
     visit admin_users_path
     click_on 'Promote'

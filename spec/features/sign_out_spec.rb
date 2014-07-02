@@ -13,20 +13,9 @@ feature 'user signs out', %Q(
   # Sees message letting them know they signed out
 
   scenario 'user signs out successfully' do
-    attrs = {
-      email: "dog@face.com",
-      password: "Secret12345",
-    }
+    user = FactoryGirl.create(:user)
+    sign_in_as(user)
 
-    user = User.create!(attrs)
-
-    visit new_user_session_path
-
-    within('#signinmodal') do
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
-    end
     click_on 'Sign out'
 
     expect(page).to have_content 'Signed out'
