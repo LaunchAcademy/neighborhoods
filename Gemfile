@@ -39,6 +39,7 @@ end
 gem 'devise'
 gem 'carrierwave'
 gem 'simple_form'
+gem 'textacular', "~> 3.0", require: 'textacular/rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
