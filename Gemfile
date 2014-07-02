@@ -37,11 +37,17 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :development do
+  gem 'dotenv-rails'
+end
+
+gem 'fog'
 gem 'devise'
 gem 'carrierwave'
 gem 'simple_form'
 gem 'textacular', "~> 3.0", require: 'textacular/rails'
 
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -7,6 +7,8 @@ class NeighborhoodsController < ApplicationController
     else
       @neighborhoods = Neighborhood.all
     end
+
+    @neighborhoods = @neighborhoods.order('created_at').page(params[:page]).per(3)
   end
 
   def new
