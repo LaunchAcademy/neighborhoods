@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140702180010) do
     t.integer  "neighborhood_id",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "total_votes",     default: 0
+    t.integer  "upvotes",         default: 0
   end
 
   create_table "users", force: true do |t|

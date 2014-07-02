@@ -16,12 +16,12 @@ class Review < ActiveRecord::Base
     votes.find_by(user_id: user.id).present?
   end
 
-  def total_votes
+  def upvotes
     votes.sum(:weight)
   end
 
-  def update_score
-    self.total_votes = votes.sum(:weight)
+  def update_upvotes
+    self.upvotes = votes.sum(:weight)
     save
   end
 end

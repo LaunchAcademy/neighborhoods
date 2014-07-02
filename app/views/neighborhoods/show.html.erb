@@ -11,7 +11,7 @@
 <% @reviews.each do |review| %>
   <table class="table">
     <td>
-      <%= review.total_votes %>
+      <%= review.upvotes %>
     </td>
       <% if current_user %>
       <% vote = review.vote_from(current_user) %>
