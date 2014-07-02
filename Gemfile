@@ -42,6 +42,8 @@ gem 'devise'
 gem 'carrierwave'
 gem "mini_magick"
 gem 'simple_form'
+gem 'forgery', '0.6.0'
+
 group :development, :test do
   gem 'dotenv-rails'
 end

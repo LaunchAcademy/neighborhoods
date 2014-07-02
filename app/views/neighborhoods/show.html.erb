@@ -8,10 +8,10 @@
   <h2>Average Rating: <%= @neighborhood.average_rating %></h2>
   <h2><%= link_to "Add Review", "/neighborhoods/#{params[:id]}/reviews/new" %></h2>
 
-<% @neighborhood.reviews.each do |review| %>
+<% @reviews.each do |review| %>
   <table class="table">
     <td>
-      <%= review.total_votes %>
+      <%= review.upvotes %>
     </td>
       <% if current_user %>
       <% vote = review.vote_from(current_user) %>
