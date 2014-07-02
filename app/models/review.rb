@@ -20,7 +20,7 @@ class Review < ActiveRecord::Base
     votes.sum(:weight)
   end
 
-  def update_upvotes
+  def update_total_upvotes
     self.upvotes = votes.sum(:weight)
     save
   end

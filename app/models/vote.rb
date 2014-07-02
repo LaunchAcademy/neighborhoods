@@ -6,7 +6,7 @@ class Vote < ActiveRecord::Base
   validates :review, presence: true
   validates :weight, inclusion: { in: [1, -1] }
 
-  after_save :update_upvotes
+  after_save :update_review_upvotes
 
   def upvote?
     weight == 1
@@ -18,7 +18,7 @@ class Vote < ActiveRecord::Base
 
   private
 
-  def update_upvotes
-    self.review.update_upvotes
+  def update_review_upvotes
+    self.review.update_total_upvotes
   end
 end
