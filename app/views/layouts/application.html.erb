@@ -28,7 +28,7 @@
               <%= image_tag current_user.avatar.url, class: "img-circle" %>
             </li>
             <li>
-              <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
+              <%= link_to("Signed in as #{current_user.email} (Sign out?)", destroy_user_session_path, method: :delete) %>
             </li>
             <li>
               <%= link_to('Edit Profile', edit_user_registration_path, data: {toggle: "modal", target: '#edit-profilemodal', remote: 'false'})  %>
