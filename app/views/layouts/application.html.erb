@@ -19,10 +19,12 @@
         <a class="navbar-brand" href="/">Neighborhoods</a>
       </div>
       <div class="navbar-collapse collapse">
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search for hoods">
-        </form>
-        <ul class="nav navbar-nav navbar-right">
+
+          <%= form_tag(neighborhoods_path, { method: "get", class: "navbar-form navbar-right", placeholder: "Search for neighborhood" }) do %>
+            <%= text_field_tag :q, nil, placeholder: "Search...", class: "form-control"  %>
+            <%= submit_tag("Search", class: "form-control") %>
+          <% end %>
+             <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li>
               <%= image_tag current_user.avatar.url, class: "img-circle" %>

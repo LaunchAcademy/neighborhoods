@@ -2,7 +2,13 @@ class NeighborhoodsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @neighborhoods = Neighborhood.order('created_at').page(params[:page]).per(3)
+    if params[:q].present?
+      @neighborhoods = Neighborhood.search(params[:q])
+    else
+      @neighborhoods = Neighborhood.all
+    end
+
+    @neighborhoods = @neighborhoods.order('created_at').page(params[:page]).per(3)
   end
 
   def new
