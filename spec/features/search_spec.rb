@@ -15,7 +15,7 @@ feature 'users can search neighborhood', %Q(
     hood = FactoryGirl.create(:neighborhood)
 
     visit neighborhoods_path
-    fill_in 'Search', with: hood.name
+    fill_in 'q', with: hood.name
     click_button 'Search'
 
     expect(page).to have_content hood.name
@@ -26,7 +26,7 @@ feature 'users can search neighborhood', %Q(
     hood = FactoryGirl.create(:neighborhood)
 
     visit neighborhoods_path
-    fill_in 'Search', with: 'qwerty'
+    fill_in 'q', with: 'qwerty'
     click_button 'Search'
 
     expect(page).not_to have_content 'Read the reviews'

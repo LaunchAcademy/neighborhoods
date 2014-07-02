@@ -20,7 +20,7 @@
       </div>
       <div class="navbar-collapse collapse">
 
-          <%= form_tag({ controller: "neighborhoods", action: "index" }, { method: "get", class: "navbar-form navbar-right", placeholder: "Search for neighborhood" }) do %>
+          <%= form_tag(neighborhoods_path, { method: "get", class: "navbar-form navbar-right", placeholder: "Search for neighborhood" }) do %>
             <%= text_field_tag :q, nil, placeholder: "Search...", class: "form-control"  %>
             <%= submit_tag("Search", class: "form-control") %>
           <% end %>
