@@ -1,6 +1,6 @@
 require 'csv'
 
-user = FactoryGirl.create(:user, email: 'admin@neighborhoods.com', role: 'admin')
+user = FactoryGirl.create(:user, email: 'admin@neighborhoods.com', password: 'neighborhoodadmin', role: 'admin')
 
 users = 50.times.map do
   FactoryGirl.create(:user, email: Forgery(:internet).email_address, password: 'neighborhood3')
