@@ -1,10 +1,9 @@
-require 'textacular/searchable'
-
 class NeighborhoodsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @neighborhoods = Neighborhood.search(params[:q])
+    binding.pry
   end
 
   def search

@@ -1,4 +1,7 @@
 class Search < ActiveRecord::Base
+
+  extend Textacular
+
   belongs_to :searchable, :polymorphic => true
 
   def self.new(query)
