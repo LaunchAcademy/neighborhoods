@@ -16,9 +16,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Neighbor HOODS</a>
+        <a class="navbar-brand" href="/">Neighborhoods</a>
       </div>
       <div class="navbar-collapse collapse">
+<!--         <form class="navbar-form navbar-right"> -->
+          <%= form_tag({ controller: "neighborhoods", action: "index" }, { method: "get" }) do %>
+            <%= label_tag(:q, "Search for:") %>
+            <%= text_field_tag(:q) %>
+            <%= submit_tag("Search") %>
+        <!--   <% end %>
+        </form> -->
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li>
@@ -28,7 +35,11 @@
               <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
             </li>
             <li>
-              <%= link_to('Edit Profile', edit_user_registration_path)  %>
+              <%= link_to('Edit Profile', edit_user_registration_path, data: {toggle: "modal", target: '#edit-profilemodal', remote: 'false'})  %>
+            </li>
+            <li>
+              <%= link_to('Recommend Neighborhood', new_neighborhood_path, data: {toggle: 'modal', target:
+                '#new-neighborhood', remote: 'false'})   %>
             </li>
               <% if current_user.admin? %>
                 <li><%= link_to('Edit Users', admin_users_path) %></li>
@@ -36,14 +47,10 @@
               <% end %>
           <% else %>
             <li>
-              <%= link_to('Sign in', new_user_session_path)  %>
+              <%= link_to('Sign in', "#", data: {toggle: "modal", target: '#signinmodal'})  %>
             </li>
           <% end %>
-
         </ul>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search for hoods">
-        </form>
       </div>
     </div>
   </div>
@@ -57,5 +64,104 @@
   <div class="container">
     <%= yield %>
   </div>
+
+<% if user_signed_in? %>
+  <!-- Add neighborhood Modal -->
+  <!-- Button trigger modal -->
+  <div class="modal fade" id="new-neighborhood" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add a New Neighborhood</h4>
+        </div>
+        <div class="modal-body">
+          <div class="border-form-div">
+            <%= simple_form_for(Neighborhood.new) do |f| %>
+              <%= f.input :name %>
+              <%= f.input :description  %>
+              <%= f.button :submit, class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of add neighborhood modal -->
+<% end %>
+<!-- Sign In Modal -->
+<!-- Button trigger modal -->
+<div class="modal fade" id="signinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign in</h4>
+      </div>
+      <div class="modal-body">
+        <div class="border-form-div">
+          <%= form_for(User.new, url: user_session_path) do |f| %>
+            <%= f.email_field :email, :autofocus => true, :placeholder => 'Email' %>
+            <%= f.password_field :password, :placeholder => 'Password'  %>
+            <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+            <%= f.submit "Sign in", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of sign in modal -->
+
+
+  <!-- Edit profile Modal -->
+<% if user_signed_in? %>
+  <!-- Button trigger modal -->
+  <div class="modal fade" id="edit-profilemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+        </div>
+        <div class="modal-body">
+          <div class="border-form-div">
+
+          <%= form_for(current_user, url: user_registration_path, method: :put ) do |f| %>
+
+            <div><%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %></div>
+
+            <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+              <%= f.password_field :password, autocomplete: "off" %></div>
+
+            <div><%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+            <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+              <%= f.password_field :current_password, autocomplete: "off" %></div>
+
+            <div>
+              Add an avatar
+              <%=f.file_field :avatar %><br>
+            </div>
+
+            <div><%= f.submit "Update", class: 'btn btn-primary' %></div>
+          <% end %>
+
+          <h3>Cancel my account</h3>
+
+          <p>Unhappy? <%= button_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete,:class=>'btn btn-primary'%></p>
+
+          <%= link_to "Back", :back %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<!-- end of edit profile modal -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 </body>
 </html>

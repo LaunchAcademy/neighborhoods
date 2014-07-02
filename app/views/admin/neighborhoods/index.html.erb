@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Neighborhood Dashboard</h1>
+  <div class="neighborhood_table">
+    <table class="table table-striped">
+      <tr>
+        <th>Neighborhood</th>
+        <th>User</th>
+        <th>Approve</th>
+        <th>Delete</th>
+      </tr>
+      <% @neighborhoods.each do |hood| %>
+      <tr>
+        <td><%= hood.name %></td>
+        <td><%= hood.user.email %></td>
+        <td><%= button_to "Approve", admin_neighborhood_path(hood, approved: true), method: :put %></td>
+        <td><%= button_to "Delete", admin_neighborhood_path(hood), method: :delete %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -17,4 +17,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :update, :destroy, :edit]
   end
 
+  namespace :admin do
+    resources :neighborhoods, only: [:index, :update, :destroy]
+  end
+
 end

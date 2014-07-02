@@ -2,11 +2,11 @@ class NeighborhoodsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @neighborhoods = Neighborhood.search(params[:q])
-    binding.pry
-  end
-
-  def search
+    if params[:q].present?
+      @neighborhoods = Neighborhood.search(params[:q])
+    else
+      @neighborhoods = Neighborhood.all
+    end
   end
 
   def new
