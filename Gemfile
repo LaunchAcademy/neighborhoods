@@ -40,6 +40,7 @@ end
 gem 'fog'
 gem 'devise'
 gem 'carrierwave'
+gem "mini_magick"
 gem 'simple_form'
 group :development, :test do
   gem 'dotenv-rails'

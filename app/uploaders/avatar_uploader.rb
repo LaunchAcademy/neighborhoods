@@ -2,6 +2,13 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
+  include CarrierWave::MiniMagick
+
+  process :resize_to_fit => [50, 50]
+
+  # version :thumb do
+  #   process :resize_to_fill => [50,50]
+  # end
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -17,7 +24,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("/fallback/" + [version_name, "default.png"].compact.join('_'))
+    ActionController::Base.helpers.asset_path("fallback/" + [version_name,"default.png"].compact.join('_'))
   end
 end
 

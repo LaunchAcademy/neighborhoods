@@ -25,7 +25,7 @@
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li>
-              <%= image_tag current_user.avatar.url %>
+              <%= image_tag current_user.avatar.url, class: "img-circle" %>
             </li>
             <li>
               <%= link_to('Sign out', destroy_user_session_path, method: :delete) %>
