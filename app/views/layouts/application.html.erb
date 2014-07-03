@@ -16,14 +16,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Neighborhoods</a>
+        <a class="navbar-brand" href="/"></a>
       </div>
       <div class="navbar-collapse collapse">
-        <%= form_tag(neighborhoods_path, { method: "get", class: "navbar-form navbar-right"}) do %>
-          <%= text_field_tag :q, params[:q], placeholder: "Find Neighborhoods", class: "form-control"  %>
-          <%= submit_tag("Search", class: "form-control") %>
-        <% end %>
-        
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li>
