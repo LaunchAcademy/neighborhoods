@@ -20,17 +20,21 @@ feature 'Admin visits neighborhoods dashboard', %Q(
   scenario 'admin approved neighborhood' do
     admin = FactoryGirl.create(:admin_user)
     neighborhood = FactoryGirl.create(:neighborhood)
+    sent_emails = ActionMailer::Base.deliveries.count
+
 
     sign_in_as(admin)
     visit admin_neighborhoods_path
     click_on 'Approve'
 
     expect(page).to have_content 'Neighborhood has been approved'
+    expect(ActionMailer::Base.deliveries.count).to eq(sent_emails+1)
   end
 
   scenario 'admin deleted neighborhood' do
     admin = FactoryGirl.create(:admin_user)
     neighborhood = FactoryGirl.create(:neighborhood)
+    sent_emails = ActionMailer::Base.deliveries.count
 
     sign_in_as(admin)
     visit admin_neighborhoods_path
@@ -38,5 +42,6 @@ feature 'Admin visits neighborhoods dashboard', %Q(
 
     expect(page).to have_content 'Neighborhood was rejected'
     expect(page).not_to have_content neighborhood.name
+    expect(ActionMailer::Base.deliveries.count).to eq(sent_emails+1)
   end
 end
