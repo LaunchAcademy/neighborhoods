@@ -3,6 +3,7 @@
 A web app that connects users to popular reviews on the neighborhoods of the Greater Boston Area. Sign in and chime in.
 
 Log in as a member with these credentials:
+------------------------------------------
 Email: example@example.com
 Password: 12345678
 
