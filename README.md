@@ -7,6 +7,14 @@ Log in as a member with these credentials:
 Email: example@example.com
 Password: 12345678
 
+Roger Davis of Back Bay:
+-----------------------
+>This app changed my life. At first,
+> I was just going from neighborhood
+> to neighborhood, like a total
+> dummy. But now, I can hear about
+> each one before I get on the train.
+
 
 
 
