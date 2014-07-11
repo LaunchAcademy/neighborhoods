@@ -8,8 +8,9 @@
   <h2>Average Rating: <%= @neighborhood.average_rating %></h2>
   <h2><%= link_to "Add Review", "/neighborhoods/#{params[:id]}/reviews/new" %></h2>
 
-<% @reviews.each do |review| %>
   <table class="table">
+<% @reviews.each do |review| %>
+<tr>
     <td>
       <%= review.upvotes %>
     </td>
@@ -19,9 +20,9 @@
       <% if vote.present? %>
       <% if vote.downvote? %>
     <td>
-      <button type="button">
+      <button type="button" id="button">
        <%=link_to"",review_vote_path(review, vote, weight: 1),
-          method: :put, class: "glyphicon glyphicon-arrow-up"%>
+          method: :put, class: "glyphicon glyphicon-arrow-up upvote"%>
       </button>
     </td>
       <% end %>
@@ -29,14 +30,20 @@
     <td>
       <button type="button">
        <%=link_to"",review_vote_path(review, vote, weight: -1),
-          method: :put, class: "glyphicon glyphicon-arrow-down"%>
+          method: :put, class: "glyphicon glyphicon-arrow-down down"%>
       </button>
     </td>
       <% end %>
       <% else %>
     <td>
-      <%= button_to 'Upvote', review_votes_path(review, weight: 1)%>
-      <%= button_to 'Downvote', review_votes_path(review, weight: -1)%>
+      <button type="button">
+         <%=link_to"",review_votes_path(review, weight: 1),
+          method: :create, class: "glyphicon glyphicon-arrow-up upvote"%>
+      </button>
+      <button type="button">
+         <%=link_to"",review_votes_path(review, weight: -1),
+          method: :create, class: "glyphicon glyphicon-arrow-down downvote"%>
+      </button>
     </td>
       <% end %>
       <% end %>
@@ -46,7 +53,7 @@
     <td>
       written by <%= review.user.email %>
     </td>
-  </table>
-<% end %>
-
+  </tr>
+  <% end %>
+</table>
 

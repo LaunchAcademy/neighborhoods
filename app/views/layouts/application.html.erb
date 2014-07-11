@@ -19,6 +19,7 @@
         <a class="navbar-brand" href="/"></a>
       </div>
       <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav return_home"><li><%= link_to "Neighborhoods", root_path %></li></ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li>
